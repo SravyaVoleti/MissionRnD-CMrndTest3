@@ -52,5 +52,6 @@ struct node{
 
 
 int get_missing_value(struct node *root,int n){
+	
     return -1;
 }

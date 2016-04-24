@@ -62,18 +62,58 @@ struct enode{
 Helper Functions are optional to write 
 */
 //Helper Functions Start
+int st[20];
+int top = 0;
 int isOperator(char *data){
+	if (data == "+" || data == "-" | data == "*")
+		return 1;
 	return 0;
 }
 int isOperand(char *data){
+	if (data >= "-9999" || data <= "99999")
+		return 1;
 	return 0;
 }
 int getOperand(char *data){
 	//converts data string to an integer "123" => 123
+	return atoi(data);
 	return 0;
 }
 //Helper Functions end
+void push(int s) {
+	st[top] = s;
+	top++;
+}
+
+int pop() {
+	int x = st[top];
+	top--;
+	return x;
+}
+
+char *postorder(struct enode *root) {
+	char *str = (char *)malloc(sizeof(char) * 10);
+	int i;
+	if (root != NULL) {
+		postorder(root->left);
+		postorder(root->right);
+		*(str + i) = *root->data;
+		i++;
+	}
+	*(str + i) = '\0';
+	return str;
+}
 int solve_tree(struct enode *root){
+	int num1, num2;
+	int s = 0,i = 0;
+	char *str = (char *)malloc(sizeof(char) * 10);
+	str = postorder(root);
+	while (str[i] != '\0') {
+		int op1, op2;
+		if (isOperand(&str[i])) {
+			//push(st, getOperand(&str[i]));
+		}
+	}
     return -1;
 }
 
